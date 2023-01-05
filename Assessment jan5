@@ -1,0 +1,54 @@
+/*1) Create a class called Book with author name,book name and isbc number as variable and store it in collection and retrive 
+   it using for each loop and itertor and also do serializaion and clonning*/
+import java.io.*;
+import java.util.*;
+   class Book implement listing
+   {
+       String authorname;
+       String bookname;
+       int isbcnum;
+       Book (String authorname,String bookname, int isbcnum)
+       {
+   this.authorname=authorname;
+   this.bookname=bookname;
+   this.isbcnum=isbcnum;
+   
+       }
+public String toString()
+{
+    return "Author Name : "+auname+"Book Name :"+boname+"ISBC Number : "+isbcnum;
+}
+
+   }
+
+   class MainBook
+   {
+    public static void main(String[] args)throws IOException, ClassNotFoundException
+    {
+        HashSet<Book> hs=new HashSet<Book>();
+        Book b1=new Book("JK Rowling","Harry potter",   357882);
+        hs.add(b1);
+        for (Book boo:hs)
+        {
+            System.out.println(boo);
+
+        }
+        Iterator it=hs.iterator();
+        while(it.hasNext());
+        {
+            System.out.println(it.next());
+        }
+        FileOutputStream fos=new FileOutputStream("D:\\Javeed\\05-10-2023(2)\\Book.txt");
+        ObjectOutputStream oos=new ObjectOutputStream(fos);
+        oos.writeObject(b1);
+        oos.close();
+        fos.close();
+        FileInputStream fis=new FileInputStream("D:\\Javeed\\05-10-2023(2)\\Book.txt");
+        ObjectInputStream ois=new ObjectInputStream(fis);
+        Book b2 =(Book)ois.readObject();
+        ois.close();
+        fis.close();
+        System.out.println(b2);
+
+    }
+   }
